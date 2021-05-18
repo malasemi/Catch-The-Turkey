@@ -1,0 +1,96 @@
+/* CSS Document */
+
+.ui-progressbar {
+	height: 2em;
+	text-align: left;
+	overflow: hidden;}
+	
+.ui-widget-header {
+    background: #a34104;
+    border: 1px solid #DDDDDD;
+    color: #333333;
+    font-weight: bold;}
+		 
+.ui-progressbar .ui-progressbar-value {
+	margin: -1px;
+	height: 100%;}
+
+#gamespace {
+	cursor: url('../img/cur970.cur'), auto;
+}
+
+#welcome {
+	color: #ff7f00;
+	font-weight: bold;}
+	
+p {
+	color: #6a3b07;}
+	
+	
+html, body {
+	width: 700px;
+	margin: 0 auto;
+	font-family: sans-serif;
+	font-size: 13px;
+	color: #333;
+	background-color: #336699;
+	background-image: url("../img/a.jpg"); 
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;}
+	
+h1 {
+	margin: 2px;
+	color: #6A3b07;
+	font-family: 'Acme', sans-serif;
+	font-size: 46px;
+	text-align: center;}
+	
+button {
+	font-size: 12px;
+	font-weight: bold;
+	padding: 8px; }
+	
+div#content {
+	font-size: 14px;
+	padding: 20px;
+	background-color: #FAEBD7 ; }
+	
+div#controls {
+	text-align: right; }
+	
+div#controls span {
+	font-weight: bold;
+	color: #Fe330A; }
+	
+div#controls button {
+	margin-left: 20px; }
+	
+.seconds {
+	display: none;
+	text-align: left;
+	font-weight: bold;
+	color: #Fe330A;}
+	
+
+div#gamespace {
+	margin: 20px;
+	padding: 10px;
+	height: 350px;
+	background-color: #FFF8DC;
+	border: 2px solid #CCC;
+	position: relative;}
+	
+.gameimage{
+	width: 100px;
+    height: 100px; }
+	
+#gamehead{
+	text-align: center; 
+	color:#D2691E}
+	
+.theImg0 {
+	width: 90px;
+    height: 90px;
+}
+div#gamespace img { position: absolute; }

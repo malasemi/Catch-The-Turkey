@@ -1,0 +1,179 @@
+<!-- 
+		Name: Majed Alasemi
+		Date: 7/31/2020
+		Class: CSCI2447, Javascript Fundamentals
+		Project 6
+ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Catch The Turkey (CSCI2447)</title>
+    
+    <!-- CSS styles -->
+	<link href="css/game.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
+	<link rel="icon" type="image/png" sizes="57x57" href="img/turkey.png">
+	<script src="js/jquery-3.5.1.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	
+	<script>
+	  var gamerFirstName;
+	  var score = 0;
+	  var timeLeft = 30;
+	  var clock;
+	  var t;
+	  var idCount = 0;
+	  var idCount2 = 0;
+		$(document).ready(function(){
+		// to ask for the player's name
+		    gamerFirstName = prompt("What is your first name?", "");
+			
+			$("#welcome").text(gamerFirstName +' ');	
+			
+		// Call start function
+			$("#start_button").click(function(evt){
+				if(timeLeft >= 30) {
+					start();
+				} else {
+					evt.preventDefault();
+				}
+			});
+			
+		// Change CSS properties for #start_button
+			$("#start_button").css({"font-size":"18px",
+				"background-color":"#fdddb4",
+				"color":"#b25005",
+				"font-style":"bold"});
+				
+		// a function to hide the image after clicking
+			$("#gamespace").on("click", "img", function(evt) {
+				if(timeLeft >= 0) { //I typed >=0 because if I type only >0 , it will stop clicking at the last one second
+				increaseScore();
+				$(this).hide();
+				} else {
+				evt.preventDefault();
+				}	
+				});
+				
+		// restart the game
+			$("#start_button").click( function(){
+			if(timeLeft < 0) {
+			timeLeft = 30;
+			score = 0;
+			$("#score").text( score + " pts");
+			$("#gamespace").find("img").remove();
+			start();
+			}
+			});
+		});
+		
+		// a function to start the game
+		function start(){
+				addImage();
+				decreaseTime();
+				$(".seconds").show();
+				hideImg();
+		};
+		
+		// Decrementing the user's remaining time by one second
+		function decreaseTime(){
+			if( timeLeft < 0){
+			clearTimeout(t);
+			clearTimeout(clock);
+			clearTimeout(d);
+			$("#gamespace img").remove();
+			$("#start_button").text("Restart");
+			
+				alert("The game is over your score is "+score);
+				}
+				else {
+					// Progressbar Widget Using jQuery UI  **jQuery UI**
+					$( "#progressbar" ).progressbar({ 
+					max:30,
+					value: timeLeft,
+					});
+					
+					$(".seconds").text(timeLeft +" seconds left");
+					timeLeft -= 1;
+					clock = setTimeout("decreaseTime()", 1000);
+				}		
+		};
+				
+		// a function to add images to the game space
+		function addImage(){
+			var x = xPosition();
+			var y = yPosition();
+			$("#gamespace").append(`<img src="img/turkey.png" class="theImg" id="i${idCount}" style="left: ${y}px; top: ${x}px; width: 90px; height: 90px;">`);
+			idCount ++;
+			r = Math.floor(Math.random() * 2000);
+			t = setTimeout("addImage()", r);
+		};
+		
+		// a function to hide images from the game space randomly
+		function hideImg(){
+			idCount2 = idCount - 1;;
+			var timer = Math.floor(Math.random() * 3000);
+			$("#i"+idCount2).hide(1500).remove();
+			d = setTimeout("hideImg()", timer);
+		};
+		
+		
+		// Increase the score
+		function increaseScore(){
+			score +=1;
+			$("#score").text( score + " pts");
+		}
+		
+		// X, Y positions function
+		function xPosition(){
+			var x = Math.floor(Math.random() * 275);
+			return x;
+			};
+			
+		function yPosition(){
+			var y = Math.floor(Math.random() * 530);
+			return y;
+			};
+		
+  
+	</script>
+	
+	
+  </head>
+  <body>
+
+	<div id="content">
+
+		<h1>Catch The Turkey</h1>
+		
+		<h2 id="gamehead">Directions</h2>
+		
+		
+		<p>Weclome, <spin id="welcome"></spin>After clicking "start", you will have 30 seconds to click
+		as many images as you can. The images appear randomly so be ready! </p>
+		
+		<div id="controls">
+			<span id="score">0 pts</span>
+			<button type="button" id="start_button">Start!</button>
+		</div>
+		
+		<div class="seconds">
+			<span>30 seconds left</span>
+		
+		</div>
+		
+		<div id="progressbar"></div>
+		<div id="gamespace">
+		
+			
+		</div>
+		
+		
+		
+		
+	</div>
+	
+  </body>
+</html>
